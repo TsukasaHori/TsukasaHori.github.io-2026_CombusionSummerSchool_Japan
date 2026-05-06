@@ -37,62 +37,150 @@
 <tbody>
 
 
-  <!--  -->
-  <div class="slideshow-container">
+  <!-- スライドショー -->
+<div class="slideshow-container">
   <img class="slide fade" src="images/venue01.jpg" alt="会場1">
   <img class="slide fade" src="images/venue02.jpg" alt="会場2">
   <img class="slide fade" src="images/venue03.jpg" alt="会場3">
   <img class="slide fade" src="images/venue04.jpg" alt="会場4">
-  <!-- <img class="slide" src="images/venue3.jpg" alt="会場3"> -->
+  <img class="slide fade" src="images/venue05.png" alt="会場5">
+
+  <button class="slide-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+  <button class="slide-btn next" onclick="changeSlide(1)">&#10095;</button>
+
+
 </div>
-
-
+  <div class="dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+  </div>
 <style>
 .slideshow-container {
     position: relative;
     max-width: 900px;
+    height: 500px;
     margin: auto;
+    overflow: hidden;
 }
 
 .slide {
     width: 100%;
+    height: 500px;
+    object-fit: cover;
     display: none;
     border-radius: 12px;
 }
 
-.active {
-    display: block;
-}
-
-/* フェードアニメーション */
-
 .fade {
-    animation: fadeEffect 10s;
+    animation: fadeEffect 3s;
 }
 
 @keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.35);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 6px;
+}
+
+.prev {
+    left: 12px;
+}
+
+.next {
+    right: 12px;
+}
+
+.slide-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #3b82f6;
 }
 </style>
 
 <script>
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-function showSlides() {
+let slideIndex = 1;
+let slideTimer;
+
+showSlides(slideIndex);
+
+function changeSlide(n) {
+    showSlides(slideIndex += n);
+    resetTimer();
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+    resetTimer();
+}
+
+function showSlides(n) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+
     slides.forEach(slide => {
         slide.style.display = "none";
     });
 
-    slideIndex++;
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
+    dots.forEach(dot => {
+        dot.classList.remove("active");
+    });
+
     slides[slideIndex - 1].style.display = "block";
-    setTimeout(showSlides, 10000);
+    dots[slideIndex - 1].classList.add("active");
 }
-showSlides();
+
+function autoSlide() {
+    showSlides(slideIndex += 1);
+    slideTimer = setTimeout(autoSlide, 10000);
+}
+
+function resetTimer() {
+    clearTimeout(slideTimer);
+    slideTimer = setTimeout(autoSlide, 10000);
+}
+
+slideTimer = setTimeout(autoSlide, 10000);
 </script>
+<!-- スライドショーここまで -->
 <!--ここまで  -->
 
 <tr><td class="hpb-lb-tb1-cell4">
