@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Name — プロジェクト紹介</title>
+<meta name="description" content="プロジェクトの簡潔な説明をここに書きます。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #d2451e;
+    --line: rgba(26,26,26,0.12);
+    --card: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+  }
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--accent); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 120px 0 100px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .hero p.lead {
+    font-size: 20px;
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 48px;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 28px;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 999px;
+    font-weight: 500;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .cta:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  .cta-secondary {
+    margin-left: 16px;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--line);
+  }
+  .cta-secondary:hover {
+    background: transparent;
+    border-color: var(--ink);
+  }
+
+  /* ---------- SECTION ---------- */
+  section.block {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    max-width: 800px;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .feature {
+    background: var(--bg);
+    padding: 40px 32px;
+  }
+  .feature-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .feature h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .feature p {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ---------- ABOUT TWO-COL ---------- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .two-col p {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+  .meta-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .meta-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .meta-list .key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 60px 0 40px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  footer a:hover { color: var(--accent); }
+
+  /* ---------- ANIMATION ---------- */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .fade-up:nth-child(2) { animation-delay: 0.15s; }
+  .fade-up:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">Project<span>.</span></div>
+    <nav>
+      <ul>
+        <li><a href="#about">概要</a></li>
+        <li><a href="#features">特徴</a></li>
+        <li><a href="#" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow fade-up">— 2025 / Project Showcase</div>
+    <h1 class="fade-up">プロジェクトを<br><em>かたちにする</em>。</h1>
+    <p class="lead fade-up">ここにプロジェクトの簡潔な説明文を書きます。何を解決するのか、誰のためのものか、1〜2文で表現するのが効果的です。</p>
+    <div class="fade-up">
+      <a href="#" class="cta">プロジェクトを見る →</a>
+      <a href="#about" class="cta cta-secondary">詳しく</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="container">
+    <div class="section-label">01 / 概要</div>
+    <h2>このプロジェクトについて。</h2>
+    <div class="two-col">
+      <div>
+        <p>プロジェクトの背景や動機をここに書きます。なぜこれを作ろうと思ったのか、どんな課題があったのか。</p>
+        <p>具体的な機能や技術的なアプローチについても触れると、訪問者の理解が深まります。読み手に「なるほど」と思ってもらえる文章を心がけましょう。</p>
+      </div>
+      <ul class="meta-list">
+        <li><span class="key">期間</span><span>2025.01 — 現在</span></li>
+        <li><span class="key">役割</span><span>個人開発</span></li>
+        <li><span class="key">技術</span><span>HTML / CSS / JS</span></li>
+        <li><span class="key">ステータス</span><span>進行中</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="features">
+  <div class="container">
+    <div class="section-label">02 / 特徴</div>
+    <h2>3つの特徴。</h2>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-num">01</div>
+        <h3>シンプルな設計</h3>
+        <p>余分な要素を削ぎ落とし、本当に必要な機能だけに絞った構成。</p>
+      </div>
+      <div class="feature">
+        <div class="feature-num">02</div>
+        <h3>高速な動作</h3>
+        <p>軽量で読み込みが速く、どんな環境でも快適に使えるよう設計されています。</p>
+      </div>
+      <div class="feature">
+        <div class="feature-num">03</div>
+        <h3>オープンソース</h3>
+        <p>コードは全て公開。誰でも自由に使い、改良し、貢献できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 Your Name · <a href="#">GitHub</a> · <a href="#">Contact</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
